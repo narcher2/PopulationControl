@@ -194,7 +194,7 @@ function ballHitPaddle (_ball, _paddles) {
 
     var diff = 0;
 
-    if (_ball.x < _paddle.x)
+    /*if (_ball.x < _paddle.x)
     {
         //  Ball is on the left-hand side of the paddle
         diff = _paddle.x - _ball.x;
@@ -207,10 +207,10 @@ function ballHitPaddle (_ball, _paddles) {
         _ball.body.velocity.x = (10 * diff);
     }
     else
-    {
+    {*/
         //  Ball is perfectly in the middle
         //  Add a little random X to stop it bouncing straight up!
         _ball.body.velocity.x = 2 + Math.random() * 8;
-    }
+    //}
 
 }
