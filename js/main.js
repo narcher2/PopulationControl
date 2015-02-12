@@ -6,6 +6,7 @@ function preload() {
     game.load.atlas('breakout', 'assets/games/breakout/breakout.png', 'assets/games/breakout/breakout.json');
     game.load.image('wood', 'assets/misc/wood.png');
     game.load.image('trampolineh', 'assets/trampolineh.png');
+    game.load.image('cat', 'assets/cat1.png');
 
 }
 
@@ -58,7 +59,7 @@ function create() {
     paddle.body.bounce.set(1);
     paddle.body.immovable = true;
 
-    ball = game.add.sprite(game.world.centerX, paddle.y - 16, 'breakout', 'ball_1.png');
+    ball = game.add.sprite(game.world.centerX, paddle.y - 16, 'cat', 'cat1.png');
     ball.anchor.set(0.5);
     ball.checkWorldBounds = true;
 
@@ -67,7 +68,7 @@ function create() {
     ball.body.collideWorldBounds = true;
     ball.body.bounce.set(1);
 
-    ball.animations.add('spin', [ 'ball_1.png', 'ball_2.png', 'ball_3.png', 'ball_4.png', 'ball_5.png' ], 50, true, false);
+    ball.animations.add('spin', [ 'cat1.png'], 50, true, false);
 
     ball.events.onOutOfBounds.add(ballLost, this);
 
