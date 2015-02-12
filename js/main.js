@@ -12,9 +12,6 @@ function preload() {
 
 var ball;
 var paddle;
-var paddle2;
-var paddle3;
-var paddle4;
 var bricks;
 
 var ballOnPaddle = true;
@@ -53,39 +50,20 @@ function create() {
         }
     }
 
-    paddle = game.add.sprite(game.world.centerX, 584, 'trampolineh', 'trampolineh.png');
+    paddle = game.add.sprite(game.world.centerX, 600, 'trampolineh', 'trampolineh.png');
     paddle.anchor.setTo(0.5, 0.5);
-    paddle2 = game.add.sprite(game.world.centerX, 0, 'trampolineh', 'trampolineh.png');
-    paddle2.anchor.setTo(0.5, 0.5);
-    paddle3 = game.add.sprite(0, game.world.centerY, 'trampolineh', 'trampolineh.png');
-    paddle3.anchor.setTo(0.5, 0.5);
-    paddle4 = game.add.sprite(640, game.world.centerY, 'trampolineh', 'trampolineh.png');
-    paddle4.anchor.setTo(0.5, 0.5);
 
     game.physics.enable(paddle, Phaser.Physics.ARCADE);
-    game.physics.enable(paddle1, Phaser.Physics.ARCADE);
-    game.physics.enable(paddle2, Phaser.Physics.ARCADE);
-    game.physics.enable(paddle3, Phaser.Physics.ARCADE);
 
     paddle.body.collideWorldBounds = true;
     paddle.body.bounce.set(1);
     paddle.body.immovable = true;
-    paddle2.body.collideWorldBounds = true;
-    paddle2.body.bounce.set(1);
-    paddle2.body.immovable = true;
-    paddle3.body.collideWorldBounds = true;
-    paddle3.body.bounce.set(1);
-    paddle3.body.immovable = true;
-    paddle4.body.collideWorldBounds = true;
-    paddle4.body.bounce.set(1);
-    paddle4.body.immovable = true;
 
     ball = game.add.sprite(game.world.centerX, paddle.y - 16, 'cat', 'cat1.png');
     ball.anchor.set(0.5);
     ball.checkWorldBounds = true;
 
     game.physics.enable(ball, Phaser.Physics.ARCADE);
-
 
     ball.body.collideWorldBounds = true;
     ball.body.bounce.set(1);
@@ -126,68 +104,6 @@ function update () {
     else
     {
         game.physics.arcade.collide(ball, paddle, ballHitPaddle, null, this);
-        game.physics.arcade.collide(ball, bricks, ballHitBrick, null, this);
-    }
-        paddle2.x = game.input.x;
-
-    if (paddle2.x < 24)
-    {
-        paddle2.x = 24;
-    }
-    else if (paddle2.x > game.width - 24)
-    {
-        paddle2.x = game.width - 24;
-    }
-
-    if (ballOnPaddle2)
-    {
-        ball.body.x = paddle2.x;
-    }
-    else
-    {
-        game.physics.arcade.collide(ball, paddle2, ballHitPaddle, null, this);
-        game.physics.arcade.collide(ball, bricks, ballHitBrick, null, this);
-    }
-    
-            paddle3.x = game.input.x;
-
-    if (paddle3.x < 24)
-    {
-        paddle3.x = 24;
-    }
-    else if (paddle3.x > game.width - 24)
-    {
-        paddle3.x = game.width - 24;
-    }
-
-    if (ballOnPaddle4)
-    {
-        ball.body.x = paddle4.x;
-    }
-    else
-    {
-        game.physics.arcade.collide(ball, paddle4, ballHitPaddle, null, this);
-        game.physics.arcade.collide(ball, bricks, ballHitBrick, null, this);
-    }
-    
-            paddle4.x = game.input.x;
-
-    if (paddle4.x < 24)
-    {
-        paddle4.x = 24;
-    }
-    else if (paddle4.x > game.width - 24)
-    {
-        paddle4.x = game.width - 24;
-    }
-
-    if (ballOnPaddle4)
-    {
-        ball.body.x = paddle4.x;
-    }
-    else
-    {
-        game.physics.arcade.collide(ball, paddle2, ballHitPaddle, null, this);
         game.physics.arcade.collide(ball, bricks, ballHitBrick, null, this);
     }
 
@@ -286,75 +202,5 @@ function ballHitPaddle (_ball, _paddle) {
         //  Add a little random X to stop it bouncing straight up!
         _ball.body.velocity.x = 2 + Math.random() * 8;
     }
-    
-function ballHitPaddle2 (_ball, _paddle2) {
-
-    var diff = 0;
-
-    if (_ball.x < _paddle2.x)
-    {
-        //  Ball is on the left-hand side of the paddle
-        diff = _paddle2.x - _ball.x;
-        _ball.body.velocity.x = (-10 * diff);
-    }
-    else if (_ball.x > _paddle2.x)
-    {
-        //  Ball is on the right-hand side of the paddle
-        diff = _ball.x -_paddle2.x;
-        _ball.body.velocity.x = (10 * diff);
-    }
-    else
-    {
-        //  Ball is perfectly in the middle
-        //  Add a little random X to stop it bouncing straight up!
-        _ball.body.velocity.x = 2 + Math.random() * 8;
-    }
-    
-function ballHitPaddle3 (_ball, _paddle3) {
-
-    var diff = 0;
-
-    if (_ball.x < _paddle3.x)
-    {
-        //  Ball is on the left-hand side of the paddle
-        diff = _paddle3.x - _ball.x;
-        _ball.body.velocity.x = (-10 * diff);
-    }
-    else if (_ball.x > _paddle3.x)
-    {
-        //  Ball is on the right-hand side of the paddle
-        diff = _ball.x -_paddle3.x;
-        _ball.body.velocity.x = (10 * diff);
-    }
-    else
-    {
-        //  Ball is perfectly in the middle
-        //  Add a little random X to stop it bouncing straight up!
-        _ball.body.velocity.x = 2 + Math.random() * 8;
-    }
-
-function ballHitPaddle4 (_ball, _paddle4) {
-
-    var diff = 0;
-
-    if (_ball.x < _paddle4.x)
-    {
-        //  Ball is on the left-hand side of the paddle
-        diff = _paddle4.x - _ball.x;
-        _ball.body.velocity.x = (-10 * diff);
-    }
-    else if (_ball.x > _paddle4.x)
-    {
-        //  Ball is on the right-hand side of the paddle
-        diff = _ball.x -_paddle4.x;
-        _ball.body.velocity.x = (10 * diff);
-    }
-    else
-    {
-        //  Ball is perfectly in the middle
-        //  Add a little random X to stop it bouncing straight up!
-        _ball.body.velocity.x = 2 + Math.random() * 8;
-    }
-
 
 }
