@@ -14,7 +14,6 @@ function preload() {
 
 
 }
-/ahh
 var ball;
 var paddle;
 var bricks;
