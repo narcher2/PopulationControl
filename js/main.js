@@ -174,7 +174,7 @@ function releaseBall () {
 function ballLost () {
 
     score--;
-    livesText.text = 'lives: ' + lives;
+    //livesText.text = 'lives: ' + lives;
 
     if (lives === 0)
     {
