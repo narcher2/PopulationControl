@@ -7,12 +7,14 @@ function preload() {
     game.load.image('wood', 'assets/misc/wood.png');
     game.load.image('trampolineh', 'assets/trampolineh.png');
     game.load.image('cat',  'cat' + (Math.floor((Math.random() * 4) + 1)) +'.png');
+    game.load.image('box', 'assets/box.png');
 
 }
 
 var ball;
 var paddle;
 var bricks;
+var box;
 
 var ballOnPaddle = true;
 
@@ -73,8 +75,11 @@ function create() {
     paddle.body.collideWorldBounds = true;
     paddle.body.bounce.set(1);
     paddle.body.immovable = true;
+    
+    box = game.add.sprite(game.world.centerX, game.world.centerY, 'box', 'box.png');
+    box.anchor.set(0.5);
 
-    ball = game.add.sprite(game.world.centerX, paddle.y - 16, 'cat', 'cat' + (Math.floor((Math.random() * 4) + 1)) +'.png');
+    ball = game.add.sprite(game.world.centerX, game.world.centerY, 'cat', 'cat' + (Math.floor((Math.random() * 4) + 1)) +'.png');
     ball.anchor.set(0.5);
     ball.checkWorldBounds = true;
 
@@ -151,7 +156,7 @@ function ballLost () {
         ballOnPaddle = true;
 
         //ball.reset(paddle.body.x + 16, paddle.y - 16);
-        ball.reset(300, 400);
+        ball.reset(400, 300);
         
         ball.animations.stop();
     }
