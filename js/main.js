@@ -113,6 +113,7 @@ function update () {
     counter++;
     
     if (counter > 100){
+        score++;
         counter = 0;
             ball = balls.create(game.world.centerX, 300, 'cat', 'cat' + (Math.floor((Math.random() * 4) + 1)) +'.png');
     ball.anchor.set(0.5);
@@ -172,7 +173,7 @@ function releaseBall () {
 
 function ballLost () {
 
-    lives--;
+    score--;
     livesText.text = 'lives: ' + lives;
 
     if (lives === 0)
@@ -181,11 +182,12 @@ function ballLost () {
     }
     else
     {
-        ballOnPaddle = true;
+        //ballOnPaddle = true;
 
         //ball.reset(paddle.body.x + 16, paddle.y - 16);
         ball.reset(box.x, box.y);
-        
+        ball.body.velocity.y = -300;
+        ball.body.velocity.x = -75;
         ball.animations.stop();
     }
 
