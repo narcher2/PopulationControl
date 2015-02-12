@@ -65,9 +65,9 @@ function create() {
 
     //game.physics.enable(paddle, Phaser.Physics.ARCADE);
 
-    paddle.body.collideWorldBounds = true;
-    paddle.body.bounce.set(1);
-    paddle.body.immovable = true;
+    paddles.body.collideWorldBounds = true;
+    paddles.body.bounce.set(1);
+    paddles.body.immovable = true;
 
     ball = game.add.sprite(game.world.centerX, paddle.y - 16, 'cat', 'cat1.png');
     ball.anchor.set(0.5);
