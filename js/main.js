@@ -106,11 +106,11 @@ function update () {
 
     //  Fun, but a little sea-sick inducing :) Uncomment if you like!
     // s.tilePosition.x += (game.input.speed.x / 2);
-    counter++;
+    /*counter++;
     
     if counter > 100{
         counter = 0;
-    }
+    }*/
 
     paddles.x = game.input.x;
 
