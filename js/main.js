@@ -55,7 +55,7 @@ function create() {
 //        }
 //    }
     
-    paddle = paddles.create(game.world.centerX-300, 584, 'trampolineh', 'trampolineh.png');
+    paddle = paddles.create(game.world.centerX-364, 584, 'trampolineh', 'trampolineh.png');
     paddle = paddles.create(game.world.centerX, 16, 'trampolineh', 'trampolineh.png');
     paddle.anchor.setTo(0.5, 0.5);
 
@@ -190,7 +190,7 @@ function ballHitBrick (_ball, _brick) {
 
 }
 
-function ballHitPaddle (_ball, _paddle) {
+function ballHitPaddle (_ball, _paddles) {
 
     var diff = 0;
 
