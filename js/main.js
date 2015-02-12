@@ -56,6 +56,11 @@ function create() {
 //    }
     
     paddle = paddles.create(game.world.centerX-396, 584, 'trampolineh', 'trampolineh.png');
+    paddle.body.collideWorldBounds = true;
+    paddle.body.bounce.set(1);
+    paddle.body.immovable = true;
+    paddle.anchor.setTo(0.5, 0.5);
+
     paddle = paddles.create(game.world.centerX, 16, 'trampolineh', 'trampolineh.png');
     paddle.anchor.setTo(0.5, 0.5);
 
@@ -65,9 +70,9 @@ function create() {
 
     //game.physics.enable(paddle, Phaser.Physics.ARCADE);
 
-    paddles.body.collideWorldBounds = true;
-    paddles.body.bounce.set(1);
-    paddles.body.immovable = true;
+    paddle.body.collideWorldBounds = true;
+    paddle.body.bounce.set(1);
+    paddle.body.immovable = true;
 
     ball = game.add.sprite(game.world.centerX, paddle.y - 16, 'cat', 'cat1.png');
     ball.anchor.set(0.5);
