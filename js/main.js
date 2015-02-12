@@ -1,52 +1,204 @@
-window.onload = function() {
-    // You might want to start with a template that uses GameStates:
-    //     https://github.com/photonstorm/phaser/tree/master/resources/Project%20Templates/Basic
-    
-    // You can copy-and-paste the code from any of the examples at http://examples.phaser.io here.
-    // You will need to change the fourth parameter to "new Phaser.Game()" from
-    // 'phaser-example' to 'game', which is the id of the HTML element where we
-    // want the game to go.
-    // The assets (and code) can be found at: https://github.com/photonstorm/phaser/tree/master/examples/assets
-    // You will need to change the paths you pass to "game.load.image()" or any other
-    // loading functions to reflect where you are putting the assets.
-    // All loading functions will typically all be found inside "preload()".
-    
-    "use strict";
-    
-    var game = new Phaser.Game( 800, 600, Phaser.AUTO, 'game', { preload: preload, create: create, update: update } );
-    
-    function preload() {
-        // Load an image and call it 'logo'.
-        game.load.image( 'logo', 'assets/phaser.png' );
+
+var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-example', { preload: preload, create: create, update: update });
+
+function preload() {
+
+    game.load.atlas('breakout', 'assets/games/breakout/breakout.png', 'assets/games/breakout/breakout.json');
+    game.load.image('starfield', 'assets/misc/starfield.jpg');
+
+}
+
+var ball;
+var paddle;
+var bricks;
+
+var ballOnPaddle = true;
+
+var lives = 3;
+var score = 0;
+
+var scoreText;
+var livesText;
+var introText;
+
+var s;
+
+function create() {
+
+    game.physics.startSystem(Phaser.Physics.ARCADE);
+
+    //  We check bounds collisions against all walls other than the bottom one
+    game.physics.arcade.checkCollision.down = false;
+
+    s = game.add.tileSprite(0, 0, 800, 600, 'starfield');
+
+    bricks = game.add.group();
+    bricks.enableBody = true;
+    bricks.physicsBodyType = Phaser.Physics.ARCADE;
+
+    var brick;
+
+    for (var y = 0; y < 4; y++)
+    {
+        for (var x = 0; x < 15; x++)
+        {
+            brick = bricks.create(120 + (x * 36), 100 + (y * 52), 'breakout', 'brick_' + (y+1) + '_1.png');
+            brick.body.bounce.set(1);
+            brick.body.immovable = true;
+        }
     }
-    
-    var bouncy;
-    
-    function create() {
-        // Create a sprite at the center of the screen using the 'logo' image.
-        bouncy = game.add.sprite( game.world.centerX, game.world.centerY, 'logo' );
-        // Anchor the sprite at its center, as opposed to its top-left corner.
-        // so it will be truly centered.
-        bouncy.anchor.setTo( 0.5, 0.5 );
+
+    paddle = game.add.sprite(game.world.centerX, 500, 'breakout', 'paddle_big.png');
+    paddle.anchor.setTo(0.5, 0.5);
+
+    game.physics.enable(paddle, Phaser.Physics.ARCADE);
+
+    paddle.body.collideWorldBounds = true;
+    paddle.body.bounce.set(1);
+    paddle.body.immovable = true;
+
+    ball = game.add.sprite(game.world.centerX, paddle.y - 16, 'breakout', 'ball_1.png');
+    ball.anchor.set(0.5);
+    ball.checkWorldBounds = true;
+
+    game.physics.enable(ball, Phaser.Physics.ARCADE);
+
+    ball.body.collideWorldBounds = true;
+    ball.body.bounce.set(1);
+
+    ball.animations.add('spin', [ 'ball_1.png', 'ball_2.png', 'ball_3.png', 'ball_4.png', 'ball_5.png' ], 50, true, false);
+
+    ball.events.onOutOfBounds.add(ballLost, this);
+
+    scoreText = game.add.text(32, 550, 'score: 0', { font: "20px Arial", fill: "#ffffff", align: "left" });
+    livesText = game.add.text(680, 550, 'lives: 3', { font: "20px Arial", fill: "#ffffff", align: "left" });
+    introText = game.add.text(game.world.centerX, 400, '- click to start -', { font: "40px Arial", fill: "#ffffff", align: "center" });
+    introText.anchor.setTo(0.5, 0.5);
+
+    game.input.onDown.add(releaseBall, this);
+
+}
+
+function update () {
+
+    //  Fun, but a little sea-sick inducing :) Uncomment if you like!
+    // s.tilePosition.x += (game.input.speed.x / 2);
+
+    paddle.x = game.input.x;
+
+    if (paddle.x < 24)
+    {
+        paddle.x = 24;
+    }
+    else if (paddle.x > game.width - 24)
+    {
+        paddle.x = game.width - 24;
+    }
+
+    if (ballOnPaddle)
+    {
+        ball.body.x = paddle.x;
+    }
+    else
+    {
+        game.physics.arcade.collide(ball, paddle, ballHitPaddle, null, this);
+        game.physics.arcade.collide(ball, bricks, ballHitBrick, null, this);
+    }
+
+}
+
+function releaseBall () {
+
+    if (ballOnPaddle)
+    {
+        ballOnPaddle = false;
+        ball.body.velocity.y = -300;
+        ball.body.velocity.x = -75;
+        ball.animations.play('spin');
+        introText.visible = false;
+    }
+
+}
+
+function ballLost () {
+
+    lives--;
+    livesText.text = 'lives: ' + lives;
+
+    if (lives === 0)
+    {
+        gameOver();
+    }
+    else
+    {
+        ballOnPaddle = true;
+
+        ball.reset(paddle.body.x + 16, paddle.y - 16);
         
-        // Turn on the arcade physics engine for this sprite.
-        game.physics.enable( bouncy, Phaser.Physics.ARCADE );
-        // Make it bounce off of the world bounds.
-        bouncy.body.collideWorldBounds = true;
-        
-        // Add some text using a CSS style.
-        // Center it in X, and position its top 15 pixels from the top of the world.
-        var style = { font: "25px Verdana", fill: "#9999ff", align: "center" };
-        var text = game.add.text( game.world.centerX, 15, "Build something awesome.", style );
-        text.anchor.setTo( 0.5, 0.0 );
+        ball.animations.stop();
     }
+
+}
+
+function gameOver () {
+
+    ball.body.velocity.setTo(0, 0);
     
-    function update() {
-        // Accelerate the 'logo' sprite towards the cursor,
-        // accelerating at 500 pixels/second and moving no faster than 500 pixels/second
-        // in X or Y.
-        // This function returns the rotation angle that makes it visually match its
-        // new trajectory.
-        bouncy.rotation = game.physics.arcade.accelerateToPointer( bouncy, this.game.input.activePointer, 500, 500, 500 );
+    introText.text = 'Game Over!';
+    introText.visible = true;
+
+}
+
+function ballHitBrick (_ball, _brick) {
+
+    _brick.kill();
+
+    score += 10;
+
+    scoreText.text = 'score: ' + score;
+
+    //  Are they any bricks left?
+    if (bricks.countLiving() == 0)
+    {
+        //  New level starts
+        score += 1000;
+        scoreText.text = 'score: ' + score;
+        introText.text = '- Next Level -';
+
+        //  Let's move the ball back to the paddle
+        ballOnPaddle = true;
+        ball.body.velocity.set(0);
+        ball.x = paddle.x + 16;
+        ball.y = paddle.y - 16;
+        ball.animations.stop();
+
+        //  And bring the bricks back from the dead :)
+        bricks.callAll('revive');
     }
-};
+
+}
+
+function ballHitPaddle (_ball, _paddle) {
+
+    var diff = 0;
+
+    if (_ball.x < _paddle.x)
+    {
+        //  Ball is on the left-hand side of the paddle
+        diff = _paddle.x - _ball.x;
+        _ball.body.velocity.x = (-10 * diff);
+    }
+    else if (_ball.x > _paddle.x)
+    {
+        //  Ball is on the right-hand side of the paddle
+        diff = _ball.x -_paddle.x;
+        _ball.body.velocity.x = (10 * diff);
+    }
+    else
+    {
+        //  Ball is perfectly in the middle
+        //  Add a little random X to stop it bouncing straight up!
+        _ball.body.velocity.x = 2 + Math.random() * 8;
+    }
+
+}
