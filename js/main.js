@@ -88,7 +88,7 @@ function create() {
     ball.anchor.set(0.5);
     ball.checkWorldBounds = true;
 
-    game.physics.enable(balls, Phaser.Physics.ARCADE);
+    game.physics.enable(ball, Phaser.Physics.ARCADE);
 
     ball.body.collideWorldBounds = true;
     ball.body.bounce.set(1);
@@ -114,7 +114,7 @@ function update () {
     
     if (counter > 100){
         counter = 0;
-            ball = game.add.sprite(game.world.centerX, 300, 'cat', 'cat' + (Math.floor((Math.random() * 4) + 1)) +'.png');
+            ball = balls.create(game.world.centerX, 300, 'cat', 'cat' + (Math.floor((Math.random() * 4) + 1)) +'.png');
     ball.anchor.set(0.5);
     ball.checkWorldBounds = true;
 
@@ -122,6 +122,12 @@ function update () {
 
     ball.body.collideWorldBounds = true;
     ball.body.bounce.set(1);
+    
+    ballOnPaddle = false;
+    ball.body.velocity.y = -300;
+    ball.body.velocity.x = -75;
+    ball.animations.play('spin');
+    introText.visible = false;
 
     ball.animations.add('spin', [ 'cat' + (Math.floor((Math.random() * 4) + 1)) +'.png'], 50, true, false);
 
