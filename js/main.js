@@ -200,9 +200,9 @@ function ballLost () {
         //ballOnPaddle = true;
 
         //ball.reset(paddle.body.x + 16, paddle.y - 16);
-        ball.reset(box.x, box.y);
-        ball.body.velocity.y = -300;
-        ball.body.velocity.x = -75;
+        //ball.reset(box.x, box.y);
+        //ball.body.velocity.y = -300;
+        //ball.body.velocity.x = -75;
         ball.animations.stop();
     }
 
