@@ -3,7 +3,7 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-example', { preload: p
 
 function preload() {
 
-    //game.load.atlas('breakout', 'assets/phaser.jpg', 'assets/games/breakout/breakout.json');
+    game.load.atlas('breakout', 'assets/phaser.jpg', 'assets/games/breakout/breakout.json');
     game.load.image('wood', 'assets/wood.png');
 
 }
@@ -42,13 +42,13 @@ function create() {
     {
         for (var x = 0; x < 15; x++)
         {
-            brick = bricks.create(120 + (x * 36), 100 + (y * 52), 'breakout', 'cat_' + (y+1) + '1.png');
+            brick = bricks.create(120 + (x * 36), 100 + (y * 52), 'assets', 'cat_' + (y+1) + '1.png');
             brick.body.bounce.set(1);
             brick.body.immovable = true;
         }
     }
 
-    paddle = game.add.sprite(game.world.centerX, 500, 'breakout', 'trampolineh.png');
+    paddle = game.add.sprite(game.world.centerX, 500, 'assets', 'trampolineh.png');
     paddle.anchor.setTo(0.5, 0.5);
 
     game.physics.enable(paddle, Phaser.Physics.ARCADE);
@@ -57,7 +57,7 @@ function create() {
     paddle.body.bounce.set(1);
     paddle.body.immovable = true;
 
-    ball = game.add.sprite(game.world.centerX, paddle.y - 16, 'breakout', 'cat1.png');
+    ball = game.add.sprite(game.world.centerX, paddle.y - 16, 'assets', 'cat1.png');
     ball.anchor.set(0.5);
     ball.checkWorldBounds = true;
 
