@@ -4,7 +4,7 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-example', { preload: p
 function preload() {
 
     game.load.atlas('breakout', 'assets/games/breakout/breakout.png', 'assets/games/breakout/breakout.json');
-    game.load.image('starfield', 'assets/misc/starfield.jpg');
+    game.load.image('wood', 'assets/misc/wood.png');
 
 }
 
@@ -30,7 +30,7 @@ function create() {
     //  We check bounds collisions against all walls other than the bottom one
     game.physics.arcade.checkCollision.down = false;
 
-    s = game.add.tileSprite(0, 0, 800, 600, 'starfield');
+    s = game.add.tileSprite(0, 0, 800, 600, 'wood');
 
     bricks = game.add.group();
     bricks.enableBody = true;
