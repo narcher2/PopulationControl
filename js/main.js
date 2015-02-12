@@ -45,17 +45,17 @@ function create() {
 
     var brick;
 
-    for (var y = 0; y < 4; y++)
-    {
-        for (var x = 0; x < 15; x++)
-        {
-            brick = bricks.create(120 + (x * 36), 100 + (y * 52), 'breakout', 'brick_' + (y+1) + '_1.png');
-            brick.body.bounce.set(1);
-            brick.body.immovable = true;
-        }
-    }
+//    for (var y = 0; y < 4; y++)
+//    {
+//        for (var x = 0; x < 15; x++)
+//        {
+//            brick = bricks.create(120 + (x * 36), 100 + (y * 52), 'breakout', 'brick_' + (y+1) + '_1.png');
+//            brick.body.bounce.set(1);
+//            brick.body.immovable = true;
+//        }
+//    }
     
-    paddle = paddles.create(game.world.centerX, 584, 'trampolineh', 'trampolineh.png');
+    paddle = paddles.create(game.world.centerX-300, 584, 'trampolineh', 'trampolineh.png');
     paddle = paddles.create(game.world.centerX, 16, 'trampolineh', 'trampolineh.png');
     paddle.anchor.setTo(0.5, 0.5);
 
