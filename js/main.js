@@ -48,7 +48,7 @@ function create() {
         }
     }
 
-    paddle = game.add.sprite(game.world.centerX, 500, 'breakout', 'trampolineh.png');
+    paddle = game.add.sprite(game.world.centerX, 500, 'breakout', 'paddle.png');
     paddle.anchor.setTo(0.5, 0.5);
 
     game.physics.enable(paddle, Phaser.Physics.ARCADE);
