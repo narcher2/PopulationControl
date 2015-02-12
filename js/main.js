@@ -83,7 +83,7 @@ function create() {
     ball.body.collideWorldBounds = true;
     ball.body.bounce.set(1);
 
-    ball.animations.add('spin', [ 'cat1.png'], 50, true, false);
+    ball.animations.add('spin', [ 'cat' + (Math.floor((Math.random() * 4) + 1)) +'.png'], 50, true, false);
 
     ball.events.onOutOfBounds.add(ballLost, this);
 
