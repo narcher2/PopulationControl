@@ -153,6 +153,14 @@
 	"sourceSize": {"w":48,"h":16}
 },
 {
+	"filename": "trampolineh.png",
+	"frame": {"x":98,"y":40,"w":48,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":48,"h":16},
+	"sourceSize": {"w":64,"h":32}
+},
+{
 	"filename": "paddle_small.png",
 	"frame": {"x":148,"y":38,"w":32,"h":16},
 	"rotated": false,
