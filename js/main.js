@@ -12,6 +12,9 @@ function preload() {
 
 var ball;
 var paddle;
+var paddle2;
+var paddle3;
+var paddle4;
 var bricks;
 
 var ballOnPaddle = true;
@@ -60,6 +63,9 @@ function create() {
     paddle4.anchor.setTo(0.5, 0.5);
 
     game.physics.enable(paddle, Phaser.Physics.ARCADE);
+    game.physics.enable(paddle1, Phaser.Physics.ARCADE);
+    game.physics.enable(paddle2, Phaser.Physics.ARCADE);
+    game.physics.enable(paddle3, Phaser.Physics.ARCADE);
 
     paddle.body.collideWorldBounds = true;
     paddle.body.bounce.set(1);
@@ -79,6 +85,7 @@ function create() {
     ball.checkWorldBounds = true;
 
     game.physics.enable(ball, Phaser.Physics.ARCADE);
+
 
     ball.body.collideWorldBounds = true;
     ball.body.bounce.set(1);
