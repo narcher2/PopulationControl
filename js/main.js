@@ -5,6 +5,7 @@ function preload() {
 
     game.load.atlas('breakout', 'assets/games/breakout/breakout.png', 'assets/games/breakout/breakout.json');
     game.load.image('wood', 'assets/misc/wood.png');
+    game.load.image('trampolineh', 'assets/trampolineh.png');
 
 }
 
@@ -48,7 +49,7 @@ function create() {
         }
     }
 
-    paddle = game.add.sprite(game.world.centerX, 500, 'breakout', 'paddle_big.png');
+    paddle = game.add.sprite(game.world.centerX, 500, 'trampolineh', 'trampolineh.png');
     paddle.anchor.setTo(0.5, 0.5);
 
     game.physics.enable(paddle, Phaser.Physics.ARCADE);
