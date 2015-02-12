@@ -229,27 +229,27 @@ function ballHitBrick (_ball, _brick) {
 
 }
 
-function ballHitPaddle (_balls, _paddles) {
+function ballHitPaddle (_ball, _paddles) {
 
     var diff = 0;
 
-    if (_balls.x < _paddles.x)
+    if (_ball.x < _paddles.x)
     {
         //  Ball is on the left-hand side of the paddle
-        diff = _paddles.x - _balls.x;
-        _balls.body.velocity.x = (-5 * diff);
+        diff = _paddles.x - _ball.x;
+        _ball.body.velocity.x = (-5 * diff);
     }
-    else if (_balls.x > _paddles.x)
+    else if (_ball.x > _paddles.x)
     {
         //  Ball is on the right-hand side of the paddle
-        diff = _balls.x -_paddless.x;
-        _balls.body.velocity.x = (5 * diff);
+        diff = _ball.x -_paddless.x;
+        _ball.body.velocity.x = (5 * diff);
     }
     else
     {
         //  Ball is perfectly in the middle
         //  Add a little random X to stop it bouncing straight up!
-        _balls.body.velocity.x = 2 + Math.random() * 8;
+        _ball.body.velocity.x = 2 + Math.random() * 8;
     }
 
 }
