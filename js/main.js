@@ -91,7 +91,7 @@ function create() {
     box.anchor.set(0.5);
 
     ball = balls.create(game.world.centerX, 300, 'cat', 'cat' + (Math.floor((Math.random() * 4) + 1)) +'.png');
-    ball.anchor.set(0.5);
+    ball.anchor.set(0.5, 0.5);
     ball.checkWorldBounds = true;
 
     game.physics.enable(ball, Phaser.Physics.ARCADE);
@@ -123,7 +123,7 @@ function update () {
         scoreText.text = 'score: ' + score
         counter = 0;
             ball = balls.create(game.world.centerX, 300, 'cat', 'cat' + (Math.floor((Math.random() * 4) + 1)) +'.png');
-    ball.anchor.set(0.5);
+    ball.anchor.set(0.5, 0.5);
     ball.checkWorldBounds = true;
 
     game.physics.enable(ball, Phaser.Physics.ARCADE);
