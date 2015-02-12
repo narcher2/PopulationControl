@@ -15,8 +15,8 @@ function preload() {
 
 }
 
-var balls;
-var paddles;
+var ball;
+var paddle;
 var bricks;
 var box;
 var counter = 0;
@@ -70,19 +70,14 @@ function create() {
 //            brick.body.immovable = true;
 //        }
 //    }
-
-    var paddle;
     
     paddle = paddles.create(game.world.centerX-396, 584, 'trampolineh', 'trampolineh.png');
     paddle.body.collideWorldBounds = true;
     paddle.body.bounce.set(1);
     paddle.body.immovable = true;
     paddle.anchor.setTo(0.5, 0.5);
-    
+
     paddle = paddles.create(game.world.centerX, 16, 'trampolineh', 'trampolineh.png');
-    paddle.body.collideWorldBounds = true;
-    paddle.body.bounce.set(1);
-    paddle.body.immovable = true;
     paddle.anchor.setTo(0.5, 0.5);
 
     //paddle = game.add.sprite(game.world.centerX, 584, 'trampolineh', 'trampolineh.png');
@@ -91,18 +86,24 @@ function create() {
 
     //game.physics.enable(paddle, Phaser.Physics.ARCADE);
 
+    paddle.body.collideWorldBounds = true;
+    paddle.body.bounce.set(1);
+    paddle.body.immovable = true;
+
     box = game.add.sprite(game.world.centerX, 300, 'box', 'box.png');
     box.anchor.set(0.5);
-    
-    var ball;
 
     ball = balls.create(game.world.centerX, 300, 'cat', 'cat' + (Math.floor((Math.random() * 4) + 1)) +'.png');
     ball.anchor.set(0.5, 0.5);
     ball.checkWorldBounds = true;
+
     game.physics.enable(ball, Phaser.Physics.ARCADE);
+
     ball.body.collideWorldBounds = true;
     ball.body.bounce.set(1);
+
     ball.animations.add('spin', [ 'cat' + (Math.floor((Math.random() * 4) + 1)) +'.png'], 50, true, false);
+
     ball.events.onOutOfBounds.add(ballLost, this);
 
     scoreText = game.add.text(32, 550, 'score: 0', { font: "20px Arial", fill: "#ffffff", align: "left" });
@@ -143,7 +144,7 @@ function update () {
 
     ball.events.onOutOfBounds.add(ballLost, this);
     
-    //game.physics.arcade.collide(paddle, ball, ballHitPaddle);
+    game.physics.arcade.collide(paddle, paddles, ballHitPaddle);
     }
 
     paddles.x = game.input.x;
