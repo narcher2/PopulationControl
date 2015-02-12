@@ -114,6 +114,7 @@ function update () {
     
     if (counter > 100){
         score++;
+        scoreText.text = 'score: ' + score
         counter = 0;
             ball = balls.create(game.world.centerX, 300, 'cat', 'cat' + (Math.floor((Math.random() * 4) + 1)) +'.png');
     ball.anchor.set(0.5);
@@ -174,6 +175,7 @@ function releaseBall () {
 function ballLost () {
 
     score--;
+    scoreText.text = 'score: ' + score
     //livesText.text = 'lives: ' + lives;
 
     if (lives === 0)
