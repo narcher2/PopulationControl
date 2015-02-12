@@ -10,6 +10,7 @@ function preload() {
     game.load.image('box',  'assets/box.png');
     game.load.audio('love', 'assets/catdupe.wav');
     game.load.audio('death', 'assets/catdie.wav');
+    game.load.audio('pink', 'assets/ppanth2.mid');
 
 
 }
@@ -35,6 +36,8 @@ function create() {
     
     love = game.add.audio('love');
     death = game.add.audio('death');
+    pink = game.add.audio('pink');
+    pink.play();
 
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
