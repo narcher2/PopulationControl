@@ -88,7 +88,7 @@ function create() {
     ball.anchor.set(0.5);
     ball.checkWorldBounds = true;
 
-    game.physics.enable(ball, Phaser.Physics.ARCADE);
+    game.physics.enable(balls, Phaser.Physics.ARCADE);
 
     ball.body.collideWorldBounds = true;
     ball.body.bounce.set(1);
