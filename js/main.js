@@ -200,16 +200,16 @@ function ballHitPaddle (_ball, _paddle) {
 
     var diff = 0;
 
-    if (_ball.x < _paddle.x)
+    if (_ball.x < _paddle.x+32)
     {
         //  Ball is on the left-hand side of the paddle
-        diff = _paddle.x - _ball.x;
+        diff = _paddle.x+32 - _ball.x;
         _ball.body.velocity.x = (-10 * diff);
     }
-    else if (_ball.x > _paddle.x)
+    else if (_ball.x > _paddle.x+32)
     {
         //  Ball is on the right-hand side of the paddle
-        diff = _ball.x -_paddle.x;
+        diff = _ball.x -_paddle.x+32;
         _ball.body.velocity.x = (10 * diff);
     }
     else
