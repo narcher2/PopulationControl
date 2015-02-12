@@ -42,7 +42,7 @@ function create() {
     {
         for (var x = 0; x < 15; x++)
         {
-            brick = bricks.create(120 + (x * 36), 100 + (y * 52), 'breakout', 'brick_' + (y+1) + '_1.png');
+            brick = bricks.create(120 + (x * 36), 100 + (y * 52), 'breakout', 'cat_' + (y+1) + '1.png');
             brick.body.bounce.set(1);
             brick.body.immovable = true;
         }
