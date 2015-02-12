@@ -52,12 +52,27 @@ function create() {
 
     paddle = game.add.sprite(game.world.centerX, 584, 'trampolineh', 'trampolineh.png');
     paddle.anchor.setTo(0.5, 0.5);
+    paddle2 = game.add.sprite(game.world.centerX, 0, 'trampolineh', 'trampolineh.png');
+    paddle2.anchor.setTo(0.5, 0.5);
+    paddle3 = game.add.sprite(0, game.world.centerY, 'trampolineh', 'trampolineh.png');
+    paddle3.anchor.setTo(0.5, 0.5);
+    paddle4 = game.add.sprite(640, game.world.centerY, 'trampolineh', 'trampolineh.png');
+    paddle4.anchor.setTo(0.5, 0.5);
 
     game.physics.enable(paddle, Phaser.Physics.ARCADE);
 
     paddle.body.collideWorldBounds = true;
     paddle.body.bounce.set(1);
     paddle.body.immovable = true;
+    paddle2.body.collideWorldBounds = true;
+    paddle2.body.bounce.set(1);
+    paddle2.body.immovable = true;
+    paddle3.body.collideWorldBounds = true;
+    paddle3.body.bounce.set(1);
+    paddle3.body.immovable = true;
+    paddle4.body.collideWorldBounds = true;
+    paddle4.body.bounce.set(1);
+    paddle4.body.immovable = true;
 
     ball = game.add.sprite(game.world.centerX, paddle.y - 16, 'cat', 'cat1.png');
     ball.anchor.set(0.5);
@@ -100,6 +115,26 @@ function update () {
     if (ballOnPaddle)
     {
         ball.body.x = paddle.x;
+    }
+    else
+    {
+        game.physics.arcade.collide(ball, paddle, ballHitPaddle, null, this);
+        game.physics.arcade.collide(ball, bricks, ballHitBrick, null, this);
+    }
+        paddle2.x = game.input.x;
+
+    if (paddle2.x < 24)
+    {
+        paddle2.x = 24;
+    }
+    else if (paddle2.x > game.width - 24)
+    {
+        paddle2.x = game.width - 24;
+    }
+
+    if (ballOnPaddle)
+    {
+        ball.body.x = paddle2.x;
     }
     else
     {
