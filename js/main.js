@@ -145,7 +145,8 @@ function ballLost () {
     {
         ballOnPaddle = true;
 
-        ball.reset(paddle.body.x + 16, paddle.y - 16);
+        //ball.reset(paddle.body.x + 16, paddle.y - 16);
+        ball.reset(300, 400);
         
         ball.animations.stop();
     }
@@ -190,7 +191,7 @@ function ballHitBrick (_ball, _brick) {
 
 }
 
-function ballHitPaddle (_ball, _paddles) {
+function ballHitPaddle (_ball, _paddle) {
 
     var diff = 0;
 
