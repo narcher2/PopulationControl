@@ -16,7 +16,9 @@ function preload() {
 }
 
 var ball;
+var balls;
 var paddle;
+var paddles;
 var bricks;
 var box;
 var counter = 0;
@@ -144,7 +146,7 @@ function update () {
 
     ball.events.onOutOfBounds.add(ballLost, this);
     
-    game.physics.arcade.collide(paddle, paddles, ballHitPaddle);
+    game.physics.arcade.collide(paddles, balls, ballHitPaddle);
     }
 
     paddles.x = game.input.x;
