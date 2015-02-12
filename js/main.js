@@ -3,8 +3,8 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-example', { preload: p
 
 function preload() {
 
-    game.load.atlas('breakout', 'assets/games/breakout/breakout.png', 'assets/games/breakout/breakout.json');
-    game.load.image('starfield', 'assets/misc/starfield.jpg');
+    //game.load.atlas('breakout', 'assets/phaser.jpg', 'assets/games/breakout/breakout.json');
+    game.load.image('wood', 'assets/wood.png');
 
 }
 
@@ -30,7 +30,7 @@ function create() {
     //  We check bounds collisions against all walls other than the bottom one
     game.physics.arcade.checkCollision.down = false;
 
-    s = game.add.tileSprite(0, 0, 800, 600, 'starfield');
+    s = game.add.tileSprite(0, 0, 800, 600, 'wood');
 
     bricks = game.add.group();
     bricks.enableBody = true;
@@ -48,7 +48,7 @@ function create() {
         }
     }
 
-    paddle = game.add.sprite(game.world.centerX, 500, 'breakout', 'paddle_big.png');
+    paddle = game.add.sprite(game.world.centerX, 500, 'breakout', 'trampolineh.png');
     paddle.anchor.setTo(0.5, 0.5);
 
     game.physics.enable(paddle, Phaser.Physics.ARCADE);
@@ -57,7 +57,7 @@ function create() {
     paddle.body.bounce.set(1);
     paddle.body.immovable = true;
 
-    ball = game.add.sprite(game.world.centerX, paddle.y - 16, 'breakout', 'ball_1.png');
+    ball = game.add.sprite(game.world.centerX, paddle.y - 16, 'breakout', 'cat1.png');
     ball.anchor.set(0.5);
     ball.checkWorldBounds = true;
 
@@ -66,7 +66,7 @@ function create() {
     ball.body.collideWorldBounds = true;
     ball.body.bounce.set(1);
 
-    ball.animations.add('spin', [ 'ball_1.png', 'ball_2.png', 'ball_3.png', 'ball_4.png', 'ball_5.png' ], 50, true, false);
+    ball.animations.add('spin', [ 'cat1.png', 'cat2.png', 'cat3.png', 'cat4.png'], 50, true, false);
 
     ball.events.onOutOfBounds.add(ballLost, this);
 
