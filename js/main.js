@@ -6,7 +6,7 @@ function preload() {
     game.load.atlas('breakout', 'assets/games/breakout/breakout.png', 'assets/games/breakout/breakout.json');
     game.load.image('wood', 'assets/misc/wood.png');
     game.load.image('trampolineh', 'assets/trampolineh.png');
-    game.load.image('cat', 'assets/cat1.png');
+    game.load.image('cat', 'assets/cat' + (Math.floor((Math.random() * 4) + 1)) +'.png'');
 
 }
 
