@@ -229,20 +229,20 @@ function ballHitBrick (_ball, _brick) {
 
 }
 
-function ballHitPaddle (_ball, _paddles) {
+function ballHitPaddle (_ball, _paddle) {
 
     var diff = 0;
 
-    if (_ball.x < _paddles.x)
+    if (_ball.x < _paddle.x)
     {
         //  Ball is on the left-hand side of the paddle
-        diff = _paddles.x - _ball.x;
+        diff = _paddle.x - _ball.x;
         _ball.body.velocity.x = (-5 * diff);
     }
-    else if (_ball.x > _paddles.x)
+    else if (_ball.x > _paddle.x)
     {
         //  Ball is on the right-hand side of the paddle
-        diff = _ball.x -_paddless.x;
+        diff = _ball.x -_paddle.x;
         _ball.body.velocity.x = (5 * diff);
     }
     else
