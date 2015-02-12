@@ -143,6 +143,8 @@ function update () {
     ball.animations.add('spin', [ 'cat' + (Math.floor((Math.random() * 4) + 1)) +'.png'], 50, true, false);
 
     ball.events.onOutOfBounds.add(ballLost, this);
+    
+    game.physics.arcade.collide(paddle, paddles, ballHitPaddle);
     }
 
     paddles.x = game.input.x;
