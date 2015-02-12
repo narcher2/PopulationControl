@@ -165,6 +165,9 @@ function update () {
     {
         game.physics.arcade.collide(ball, paddles, ballHitPaddle, null, this);
         game.physics.arcade.collide(ball, bricks, ballHitBrick, null, this);
+        game.physics.arcade.collide(balls, paddles, ballHitBrick, null, this);
+        game.physics.arcade.collide(ball, balls, ballHitBrick, null, this);
+        game.physics.arcade.collide(balls, paddle, ballHitBrick, null, this);
     }
 
 }
