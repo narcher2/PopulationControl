@@ -107,19 +107,8 @@ function update () {
     //  Fun, but a little sea-sick inducing :) Uncomment if you like!
     // s.tilePosition.x += (game.input.speed.x / 2);
     counter++;
+    
     if counter > 100{
-        ball = game.add.sprite(game.world.centerX, 300, 'cat', 'cat' + (Math.floor((Math.random() * 4) + 1)) +'.png');
-        ball.anchor.set(0.5);
-        ball.checkWorldBounds = true;
-    
-        game.physics.enable(ball, Phaser.Physics.ARCADE);
-    
-        ball.body.collideWorldBounds = true;
-        ball.body.bounce.set(1);
-    
-        ball.animations.add('spin', [ 'cat' + (Math.floor((Math.random() * 4) + 1)) +'.png'], 50, true, false);
-    
-        ball.events.onOutOfBounds.add(ballLost, this);
         counter = 0;
     }
 
