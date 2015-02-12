@@ -156,7 +156,7 @@ function ballLost () {
         ballOnPaddle = true;
 
         //ball.reset(paddle.body.x + 16, paddle.y - 16);
-        ball.reset(400, 300);
+        ball.reset(box.x, box.y);
         
         ball.animations.stop();
     }
@@ -205,16 +205,16 @@ function ballHitPaddle (_ball, _paddle) {
 
     var diff = 0;
 
-    if (_ball.x < _paddle.x+64)
+    if (_ball.x < _paddle.x)
     {
         //  Ball is on the left-hand side of the paddle
-        diff = _paddle.x+64 - _ball.x;
+        diff = _paddle.x - _ball.x;
         _ball.body.velocity.x = (-5 * diff);
     }
-    else if (_ball.x > _paddle.x+64)
+    else if (_ball.x > _paddle.x)
     {
         //  Ball is on the right-hand side of the paddle
-        diff = _ball.x -_paddle.x+64;
+        diff = _ball.x -_paddle.x;
         _ball.body.velocity.x = (5 * diff);
     }
     else
