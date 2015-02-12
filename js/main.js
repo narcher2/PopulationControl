@@ -118,7 +118,7 @@ function update () {
     }
     else
     {
-        game.physics.arcade.collide(ball, paddle, ballHitPaddle, null, this);
+        game.physics.arcade.collide(ball, paddles, ballHitPaddle, null, this);
         game.physics.arcade.collide(ball, bricks, ballHitBrick, null, this);
     }
 
