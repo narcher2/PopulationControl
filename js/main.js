@@ -239,6 +239,10 @@ function ballHitBrick (_ball, _brick) {
 
 }
 
+function ballHitBall (_ball, _ball){
+    love.play();
+}
+
 function ballHitPaddle (_ball, _paddle) {
 
     var diff = 0;
