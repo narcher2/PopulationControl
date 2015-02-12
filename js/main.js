@@ -143,7 +143,7 @@ function update () {
 
     ball.events.onOutOfBounds.add(ballLost, this);
     
-    game.physics.arcade.collide(paddle, ball, ballHitPaddle);
+    //game.physics.arcade.collide(paddle, ball, ballHitPaddle);
     }
 
     paddles.x = game.input.x;
