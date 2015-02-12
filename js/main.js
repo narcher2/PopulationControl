@@ -37,6 +37,11 @@ function create() {
     bricks = game.add.group();
     bricks.enableBody = true;
     bricks.physicsBodyType = Phaser.Physics.ARCADE;
+    
+    paddles = game.add.group();
+    paddles.enableBody = true;
+    paddles.physicsBodyType = Phaser.Physics.ARCADE;
+    
 
     var brick;
 
@@ -49,12 +54,16 @@ function create() {
             brick.body.immovable = true;
         }
     }
-
-    paddle = game.add.sprite(game.world.centerX, 584, 'trampolineh', 'trampolineh.png');
-    paddle = game.add.sprite(game.world.centerX, 16, 'trampolineh', 'trampolineh.png');
+    
+    paddle = paddles.create(game.world.centerX, 584, 'trampolineh', 'trampolineh.png');
+    paddle = paddles.create(game.world.centerX, 16, 'trampolineh', 'trampolineh.png');
     paddle.anchor.setTo(0.5, 0.5);
 
-    game.physics.enable(paddle, Phaser.Physics.ARCADE);
+    //paddle = game.add.sprite(game.world.centerX, 584, 'trampolineh', 'trampolineh.png');
+    //paddle = game.add.sprite(game.world.centerX, 16, 'trampolineh', 'trampolineh.png');
+    //paddle.anchor.setTo(0.5, 0.5);
+
+    //game.physics.enable(paddle, Phaser.Physics.ARCADE);
 
     paddle.body.collideWorldBounds = true;
     paddle.body.bounce.set(1);
