@@ -13,6 +13,7 @@ function preload() {
 var ball;
 var paddle;
 var bricks;
+var box;
 
 var ballOnPaddle = true;
 
@@ -74,7 +75,7 @@ function create() {
     paddle.body.bounce.set(1);
     paddle.body.immovable = true;
 
-    ball = game.add.sprite(game.world.centerX, paddle.y - 16, 'cat', 'cat' + (Math.floor((Math.random() * 4) + 1)) +'.png');
+    ball = game.add.sprite(game.world.centerX, 300, 'cat', 'cat' + (Math.floor((Math.random() * 4) + 1)) +'.png');
     ball.anchor.set(0.5);
     ball.checkWorldBounds = true;
 
