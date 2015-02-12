@@ -41,6 +41,9 @@ function create() {
     paddles = game.add.group();
     paddles.enableBody = true;
     paddles.physicsBodyType = Phaser.Physics.ARCADE;
+    paddles.body.collideWorldBounds = true;
+    paddles.body.bounce.set(1);
+    paddles.body.immovable = true;
     
 
     var brick;
