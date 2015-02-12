@@ -8,6 +8,9 @@ function preload() {
     game.load.image('trampolineh', 'assets/trampolineh.png');
     game.load.image('cat',  'assets/cat' + (Math.floor((Math.random() * 4) + 1)) +'.png');
     game.load.image('box',  'assets/box.png');
+    game.load.audio('love', 'assets/catdupe.wav');
+    game.load.audio('death', 'assets/catdie.wav');
+
 
 }
 
@@ -29,6 +32,9 @@ var introText;
 var s;
 
 function create() {
+    
+    love = game.add.audio('love');
+    death = game.add.audio('death');
 
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
@@ -173,7 +179,7 @@ function releaseBall () {
 }
 
 function ballLost () {
-
+    death.play();
     score--;
     scoreText.text = 'score: ' + score
     //livesText.text = 'lives: ' + lives;
